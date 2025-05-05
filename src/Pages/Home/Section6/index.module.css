@@ -1,15 +1,19 @@
-.appoint {
+.appointmentSection {
     position: relative;
-    padding: 2rem;
+    margin: 4rem 0;
 }
 
 .imageContainer {
     position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 700px;
 }
 
-.logo30 {
+.appointmentImage {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .overlay {
@@ -18,64 +22,215 @@
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: rgba(6, 78, 59, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.contentWrapper {
+    max-width: 1200px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+}
+
+.header {
     text-align: center;
-    padding: 1rem;
+    margin-bottom: 3rem;
+    color: white;
 }
 
 .title {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-bottom: 1rem;
+    color: white;
 }
 
-.description {
-    margin-bottom: 1.5rem;
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .form {
     background-color: white;
-    padding: 2.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 600px;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .inputGroup {
     margin-bottom: 1rem;
 }
 
-.input, .textarea {
+.inputLabel {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #064E3B;
+    font-size: 0.95rem;
+}
+
+.inputIcon {
+    margin-right: 0.5rem;
+    color: #1B5E20;
+    font-size: 0.9rem;
+}
+
+.input, .select, .textarea {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+    outline: none;
+    border-color: #1B5E20;
+    box-shadow: 0 0 0 2px rgba(27, 94, 32, 0.2);
+}
+
+.inputError {
+    border-color: #e63946;
+}
+
+.inputError:focus {
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+.select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.textareaGroup {
+    margin-bottom: 2rem;
 }
 
 .textarea {
-    resize: none;
+    resize: vertical;
+    min-height: 120px;
 }
 
-.button {
-    background-color: darkgreen;
-    color: white;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.button:hover {
-    background-color: green;
-}
 .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
+    color: #e63946;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+.submitButton {
+    background-color: #1B5E20;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.submitButton:hover {
+    background-color: #2E7D32;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(27, 94, 32, 0.3);
+}
+
+.submitButton:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.successMessage {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.successMessage h3 {
+    color: #1B5E20;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.successMessage p {
+    color: #555;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 992px) {
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .form {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .imageContainer {
+        min-height: 800px;
+    }
+
+    .title {
+        font-size: 2rem;
+
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .overlay {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .form {
+        padding: 1.5rem;
+    }
+
+    .submitButton {
+        max-width: 100%;
+    }
 }

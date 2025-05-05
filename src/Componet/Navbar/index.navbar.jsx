@@ -1,58 +1,115 @@
 import { useEffect, useState } from 'react';
+import { FaPhone, FaMapMarkerAlt, FaClock, FaTimes, FaBars } from 'react-icons/fa';
 import styles from './index.module.css';
-import logo1 from '../../asset/Vector (3).png';
-import logo2 from '../../asset/Vector (4).png';
-import logo3 from '../../asset/Union.png';
-import logo4 from '../../asset/bee.jpeg';
+import logo from '../../asset/bee.jpeg';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
-            }
+            setScrolled(window.scrollY > 50);
+
+            // Update active link based on scroll position
+            const sections = ['home', 'about', 'gallery', 'contact'];
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 100 && rect.bottom >= 100) {
+                        setActiveLink(section);
+                    }
+                }
+            });
         };
 
         window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+        document.body.style.overflow = menuOpen ? 'auto' : 'hidden';
     };
 
+    const handleLinkClick = (section) => {
+        setActiveLink(section);
+        setMenuOpen(false);
+        document.body.style.overflow = 'auto';
+
+        const element = document.getElementById(section);
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const navLinks = [
+        { id: 'home', label: 'Home' },
+        { id: 'about', label: 'About' },
+        { id: 'gallery', label: 'Gallery' },
+        { id: 'contact', label: 'Contact' }
+    ];
+
+    const contactInfo = [
+        { icon: <FaMapMarkerAlt />, text: '7 Adebare Street Ogudu' },
+        { icon: <FaPhone />, text: '+234 806 630 6125' },
+        { icon: <FaClock />, text: 'Mon-Sun: 9am-10pm' }
+    ];
+
+
     return (
-        <div className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`}>
-            <div className={styles.head}>
-                <img src={logo4} alt="Bee" className={styles.logo4} />
-                <div className={styles.hamburgerMenu} onClick={toggleMenu}>
-                    <span className={styles.hamburger}></span>
-                    <span className={styles.hamburger}></span>
-                    <span className={styles.hamburger}></span>
+        <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+            <div className={styles.container}>
+                <div className={styles.logoContainer}>
+                    <img
+                        src={logo}
+                        alt="Bee Heaven Beauty Spa Logo"
+                        className={styles.logo}
+                        onClick={() => handleLinkClick('home')}
+                    />
+                    <span className={styles.logoText}>Bee Heaven Beauty Spa</span>
                 </div>
-                <div
-                    className={`${styles.menu} ${menuOpen ? styles.menuOpen : ''} ${menuOpen ? styles.menuSlideIn : ''}`}
-                >
-                    <p>Home</p>
-                    <p>About</p>
-                    <p>Gallery</p>
-                    <img src={logo1} alt="Vector" className={styles.logo1} />
-                    <p>7 Adebare Street Ogudu</p>
-                    <img src={logo2} alt="Vector" className={styles.logo2} />
-                    <p>+234 806 630 6125</p>
-                    <img src={logo3} alt="Union" className={styles.logo3} />
-                    <p>Mon-Sun: 9am-10pm</p>
+
+                <div className={styles.hamburger} onClick={toggleMenu}>
+                    {menuOpen ? <FaTimes /> : <FaBars />}
+                </div>
+
+                <div className={`${styles.menu} ${menuOpen ? styles.open : ''}`}>
+                    <ul className={styles.navLinks}>
+                        {navLinks.map((link) => (
+                            <li key={link.id}>
+                                <a
+                                    href={`#${link.id}`}
+                                    className={activeLink === link.id ? styles.active : ''}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleLinkClick(link.id);
+                                    }}
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <div className={styles.contactInfo}>
+                        {contactInfo.map((item, index) => (
+                            <div key={index} className={styles.contactItem}>
+                                <span className={styles.contactIcon}>{item.icon}</span>
+                                <span>{item.text}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <button className={styles.ctaButton}>Book Appointment</button>
                 </div>
             </div>
-        </div>
+        </nav>
     );
 };
 

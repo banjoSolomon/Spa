@@ -1,151 +1,297 @@
-.mainContainer {
-    margin-top: 190px;
+.heroSection {
+    padding: 2rem 0;
+    margin-top: 100px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.heroSection.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contentWrapper {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    gap: 3rem;
 }
 
-.text {
-    font-size: 3.1rem;
-    margin-left: 4.0rem;
+.textContent {
+    flex: 1;
+    max-width: 600px;
+}
+
+.heading {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
     color: #064E3B;
-    font-weight: bold;
-    width: 100%;
-    margin-bottom: 12rem;
+    margin-bottom: 2rem;
 }
 
-.span {
+.accentText {
+    color: #1B5E20;
+    display: inline-block;
+}
+
+.highlight {
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background-color: rgba(27, 94, 32, 0.3);
+    z-index: -1;
+    transform: skewY(-2deg);
+}
+
+.ctaContainer {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.primaryBtn, .secondaryBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primaryBtn {
+    background-color: #1B5E20;
+    color: white;
+    border: 2px solid #1B5E20;
+}
+
+.primaryBtn:hover {
+    background-color: #2E7D32;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(27, 94, 32, 0.3);
+}
+
+.secondaryBtn {
+    background-color: transparent;
+    color: #1B5E20;
+    border: 2px solid #1B5E20;
+}
+
+.secondaryBtn:hover {
+    background-color: rgba(27, 94, 32, 0.1);
+    transform: translateY(-3px);
+}
+
+.btnIcon {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.businessInfo {
+    margin-top: 2rem;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.infoIcon {
+    font-size: 1.2rem;
     color: #1B5E20;
 }
 
-.imageContainer {
+.infoLabel {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.infoText {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.imageContent {
     position: relative;
-    margin-left: 20rem;
+    flex: 1;
+    max-width: 600px;
 }
 
-.logo5 {
-    width: 30.9rem;
+.heroImage {
+    width: 100%;
     height: auto;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.5s ease;
 }
 
-.myTime {
+.heroImage:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.timeStatusContainer {
     position: absolute;
-    top: 50%;
+    bottom: -30px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.liveTime {
     background-color: #1B5E20;
     color: white;
-    padding: 1rem 2rem;
-    font-size: 2rem;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 8px;
+    padding: 1.2rem 2rem;
+    border-radius: 10px;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    width: 120%;
-    margin-left: -32rem;
-    margin-top: 12rem;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.3);
 }
 
 .timeUnit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 1rem;
+    margin: 0 0.8rem;
 }
 
-.myTime span {
-    margin: 0 0.5rem;
-}
-
-.myTime span.digit {
-    font-size: 3.5rem;
-    font-weight: bold;
-}
-
-.myTime span:nth-child(2) {
+.timeDigit {
     font-size: 2.5rem;
+    line-height: 1;
 }
 
-.myTime .label {
+.timeLabel {
     font-size: 0.8rem;
     margin-top: 0.3rem;
+    opacity: 0.9;
 }
 
-.status {
-    font-size: 1.5rem;
-    margin-top: 10px;
+.timeSeparator {
+    font-size: 2rem;
+    margin: 0 0.2rem;
+    position: relative;
+    top: -5px;
+}
+
+.statusBadge {
+    margin-top: 1rem;
+    padding: 0.6rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .open {
-    color: green;
+    background-color: rgba(46, 125, 50, 0.2);
+    color: #2E7D32;
 }
 
 .closed {
-    color: red;
+    background-color: rgba(211, 47, 47, 0.2);
+    color: #D32F2F;
 }
 
-
-@media (max-width: 768px) {
-
-
-    .mainContainer {
+@media (max-width: 992px) {
+    .contentWrapper {
         flex-direction: column;
-        align-items: center;
-        margin-top: 50px;
+        gap: 4rem;
     }
 
-    .text {
-        font-size: 2.5rem;
-        margin-left: 0;
+    .textContent {
+        max-width: 100%;
         text-align: center;
-        margin-bottom: 3rem;
-        margin-top: 9px;
     }
 
-    .imageContainer {
-        margin-left: 0;
-    }
-
-    .logo5 {
-        width: 80%;
-        max-width: 25rem;
-
-    }
-
-    .myTime {
-        font-size: 1.5rem;
-        width: 100%;
-        margin-left: 0;
-        margin-top: 110px;
-        padding: 0.5rem;
-        display: flex;
+    .ctaContainer {
         justify-content: center;
     }
 
-    .timeUnit {
-        display: flex;
+    .infoItem {
+        justify-content: center;
+    }
+
+    .heroImage {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        margin-top: 80px;
+        padding: 1rem 0;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+    }
+
+    .ctaContainer {
         flex-direction: column;
-        align-items: center;
+        gap: 1rem;
+    }
+
+    .primaryBtn, .secondaryBtn {
+        width: 100%;
+        padding: 0.8rem;
+    }
+
+    .timeDigit {
+        font-size: 2rem;
+    }
+
+    .timeSeparator {
+        font-size: 1.5rem;
+    }
+
+    .statusBadge {
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 2rem;
+    }
+
+    .timeUnit {
         margin: 0 0.5rem;
     }
 
-    .myTime span {
-        margin: 0.1rem 0;
+    .timeDigit {
+        font-size: 1.5rem;
     }
 
-    .myTime span.digit {
-        font-size: 2.5rem;
-        font-weight: bold;
-    }
-
-    .myTime span.label {
-        font-size: 1rem;
-        margin-top: 0.2rem;
-    }
-
-    .status {
-        font-size: 1.2rem;
-        margin-top: 10px;
-        text-align: center;
+    .timeLabel {
+        font-size: 0.7rem;
     }
 }

@@ -1,98 +1,299 @@
 .footer {
-    background-color: #191919;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+.footerTop {
+    background-color: #2a2a2a;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #333;
+}
+
+.newsletter {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.newsletter h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.newsletter p {
+    margin-bottom: 1.5rem;
+    color: #ccc;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletterForm {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.newsletterForm input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 1rem;
+}
+
+.newsletterForm button {
+    padding: 0.75rem 1.5rem;
+    background-color: #4a6f28;
     color: white;
-    padding: 2rem; /* 32px */
-    font-family: Arial, sans-serif;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.newsletterForm button:hover {
+    background-color: #5a8a2a;
+}
+
+.footerMain {
+    padding: 3rem 0;
 }
 
 .footerContainer {
-    display: flex;
-    justify-content: space-between;
-    gap: 2rem; /* Increased space between sections */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .footerSection {
-    flex: 1; /* Allow sections to grow equally */
-    min-width: 250px; /* Minimum width for responsiveness */
+    padding: 0 1rem;
 }
 
-.footerSection h2 {
-    margin-bottom: 1rem; /* 16px */
-    font-size: 1.25rem; /* 20px */
-    border-bottom: 2px solid #555; /* Divider line */
-    padding-bottom: 0.5rem; /* Padding for the border line */
+.sectionTitle {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    color: #fff;
+    position: relative;
 }
 
-.footerSection p,
-.footerSection ul {
-    margin-bottom: 1rem; /* 16px */
-    font-size: 1rem; /* 16px */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #4a6f28;
 }
 
-.footerSection p:hover {
-    color: #004d00; /* Dark green color on hover */
-    transform: scale(1.05); /* Slight zoom-out effect */
+.aboutText {
+    margin-bottom: 1.5rem;
+    color: #bbb;
 }
 
-.footerSection ul {
-    list-style-type: none;
+.linkList {
+    list-style: none;
     padding: 0;
 }
 
-.footerSection ul li {
-    margin-bottom: 0.5rem; /* 8px */
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+.linkList li {
+    margin-bottom: 0.75rem;
 }
 
-.footerSection ul li:hover {
-    color: #004d00; /* Dark green color on hover */
-    transform: scale(1.05); /* Slight zoom-out effect */
+.linkList a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+    display: block;
+}
+
+.linkList a:hover {
+    color: #4a6f28;
+    padding-left: 5px;
+}
+
+.hoursList {
+    list-style: none;
+    padding: 0;
+}
+
+.hoursList li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    color: #bbb;
+}
+
+.days {
+    font-weight: 500;
+}
+
+.hours {
+    color: #4a6f28;
+}
+
+.holidayNotice {
+    margin-top: 1rem;
+    font-style: italic;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.contactList {
+    list-style: none;
+    padding: 0;
+}
+
+.contactList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #bbb;
+}
+
+.contactIcon {
+    margin-right: 0.75rem;
+    color: #4a6f28;
+    min-width: 20px;
+}
+
+.contactList a {
+    color: #bbb;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contactList a:hover {
+    color: #4a6f28;
+}
+
+.paymentMethods {
+    margin-top: 2rem;
+}
+
+.paymentMethods span {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #999;
+}
+
+.paymentIcons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.paymentIcons span {
+    background-color: #333;
+    color: #ddd;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.socialLinks a {
+    color: #bbb;
+    font-size: 1.25rem;
+    transition: color 0.3s, transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #333;
+}
+
+.socialLinks a:hover {
+    color: #fff;
+    background-color: #4a6f28;
+    transform: translateY(-3px);
 }
 
 .footerBottom {
+    background-color: #121212;
+    padding: 1.5rem 0;
+    border-top: 1px solid #333;
+}
+
+.footerBottomContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin-top: 2rem; /* 32px */
+    gap: 1rem;
 }
 
 .footerBottom p {
     margin: 0;
-    font-size: 0.875rem; /* 14px */
+    color: #999;
+    font-size: 0.9rem;
 }
 
-.socialLinks {
-    margin-top: 1rem; /* 16px */
+.legalLinks {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.socialLinks a {
-    color: #ccc;
-    margin: 0 0.5rem; /* Adjust spacing between icons */
+.legalLinks a {
+    color: #999;
     text-decoration: none;
-    font-size: 1.125rem; /* 18px */
+    font-size: 0.85rem;
     transition: color 0.3s;
 }
 
-.socialLinks a:hover {
-    color: white;
+.legalLinks a:hover {
+    color: #4a6f28;
 }
 
-.socialLinks svg {
-    width: 24px; /* Set width of icons */
-    height: 24px; /* Set height of icons */
-    transition: opacity 0.3s;
-}
-
-.socialLinks svg:hover {
-    opacity: 0.7;
+.legalLinks span {
+    color: #555;
 }
 
 @media (max-width: 768px) {
-    .footerContainer {
+    .newsletterForm {
         flex-direction: column;
     }
 
+    .newsletterForm input {
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+
+    .newsletterForm button {
+        border-radius: 4px;
+    }
+
+    .footerContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
     .footerSection {
-        width: 100%;
-        margin: 0;
+        padding: 0;
+    }
+
+    .footerBottomContent {
+        flex-direction: column;
     }
 }

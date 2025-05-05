@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
-import logo5 from "../../../asset/10967 1.png";
+import heroImage from "../../../asset/10967 1.png";
+import { FaClock, FaCalendarAlt, FaPhoneAlt } from 'react-icons/fa';
 
 const Section1 = () => {
+    const [time, setTime] = useState(new Date());
+    const [status, setStatus] = useState('');
+    const [isVisible, setIsVisible] = useState(false);
+
+    // Business hours
     const openHour = 9;
     const closeHour = 22;
 
-
-    const initTime = () => {
-        const now = new Date();
-        return now.getHours() < openHour ? new Date(now.setHours(openHour, 0, 0, 0)) : now; // Set to open hour if before 9 AM
-    };
-
-    const [time, setTime] = useState(initTime());
-    const [status, setStatus] = useState('');
-
     useEffect(() => {
+        // Animation trigger
+        setIsVisible(true);
+
+        // Time update interval
         const intervalId = setInterval(() => {
             const newTime = new Date();
             setTime(newTime);
@@ -27,59 +28,85 @@ const Section1 = () => {
 
     const updateStatus = (currentTime) => {
         const hours = currentTime.getHours();
-        const minutes = currentTime.getMinutes();
-
-        if (hours === openHour && minutes === 0) {
-            setStatus("Now Open");
-        } else if (hours === closeHour && minutes === 0) {
-            setStatus("Now Closed");
-        } else if (hours >= openHour && hours < closeHour) {
-            setStatus("Now Open");
-        } else {
-            setStatus("Now Closed");
-        }
+        const isOpen = hours >= openHour && hours < closeHour;
+        setStatus(isOpen ? "Now Open" : "Now Closed");
     };
 
     const formatTime = (date) => {
-        const hours = String(date.getHours()).padStart(2, '0');
-        const minutes = String(date.getMinutes()).padStart(2, '0');
-        const seconds = String(date.getSeconds()).padStart(2, '0');
-        return { hours, minutes, seconds };
+        return {
+            hours: String(date.getHours()).padStart(2, '0'),
+            minutes: String(date.getMinutes()).padStart(2, '0'),
+            seconds: String(date.getSeconds()).padStart(2, '0')
+        };
     };
 
     const { hours, minutes, seconds } = formatTime(time);
-
-
     const statusColor = status.includes("Closed") ? styles.closed : styles.open;
 
     return (
-        <div className={styles.mainContainer}>
-            <div>
-                <p className={styles.text}>
-                    <span className={styles.span}>Be Beautiful</span><br />You Need Time For<br />Perfection
-                </p>
-            </div>
-            <div className={styles.imageContainer}>
-                <img src={logo5} alt="Vector" className={styles.logo5} />
-                <div className={styles.myTime}>
-                    <div className={styles.timeUnit}>
-                        <span className={`${styles.digit}`}>{hours}</span>
-                        <span className={styles.label}>hour</span>
+        <section className={`${styles.heroSection} ${isVisible ? styles.visible : ''}`} id="home">
+            <div className={styles.contentWrapper}>
+                <div className={styles.textContent}>
+                    <h1 className={styles.heading}>
+                        <span className={styles.accentText}>Be Beautiful</span><br />
+                        You Deserve Time For<br />
+                        <span className={styles.highlight}>Perfection</span>
+                    </h1>
+
+                    <div className={styles.ctaContainer}>
+                        <button className={styles.primaryBtn}>
+                            <FaCalendarAlt className={styles.btnIcon} />
+                            Book Appointment
+                        </button>
+                        <button className={styles.secondaryBtn}>
+                            <FaPhoneAlt className={styles.btnIcon} />
+                            Call Now
+                        </button>
                     </div>
-                    <span>:</span>
-                    <div className={styles.timeUnit}>
-                        <span className={`${styles.digit}`}>{minutes}</span>
-                        <span className={styles.label}>minutes</span>
-                    </div>
-                    <span>:</span>
-                    <div className={styles.timeUnit}>
-                        <span className={`${styles.digit}`}>{seconds}</span>
-                        <span className={styles.label}>seconds</span>
+
+                    <div className={styles.businessInfo}>
+                        <div className={styles.infoItem}>
+                            <FaClock className={styles.infoIcon} />
+                            <div>
+                                <p className={styles.infoLabel}>Working Hours</p>
+                                <p className={styles.infoText}>Mon-Sun: 9am - 10pm</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className={`${styles.status} ${statusColor}`}>{status}</div>
+
+                <div className={styles.imageContent}>
+                    <img
+                        src={heroImage}
+                        alt="Beauty spa treatment"
+                        className={styles.heroImage}
+                        loading="lazy"
+                    />
+
+                    <div className={styles.timeStatusContainer}>
+                        <div className={styles.liveTime}>
+                            <div className={styles.timeUnit}>
+                                <span className={styles.timeDigit}>{hours}</span>
+                                <span className={styles.timeLabel}>Hours</span>
+                            </div>
+                            <span className={styles.timeSeparator}>:</span>
+                            <div className={styles.timeUnit}>
+                                <span className={styles.timeDigit}>{minutes}</span>
+                                <span className={styles.timeLabel}>Minutes</span>
+                            </div>
+                            <span className={styles.timeSeparator}>:</span>
+                            <div className={styles.timeUnit}>
+                                <span className={styles.timeDigit}>{seconds}</span>
+                                <span className={styles.timeLabel}>Seconds</span>
+                            </div>
+                        </div>
+                        <div className={`${styles.statusBadge} ${statusColor}`}>
+                            {status}
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 

@@ -1,52 +1,200 @@
-
-.offers {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column; /* Stack text and images vertically */
-    align-items: center; /* Center the content horizontally */
-    text-align: center; /* Center the text */
-    background-color: #f9f9f9;
-
+.specialOffers {
+    padding: 5rem 2rem;
+    background-color: #f5f5f5;
+    position: relative;
 }
 
+.sectionHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-.special {
-    font-size: 23px;
-    line-height: 1.5;
-    margin-bottom: 2rem;
+.sectionTitle {
+    font-size: 2.5rem;
+    color: #064E3B;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.sectionSubtitle {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.offersContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.offerCard {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    transition: all 0.3s ease;
+}
+
+.offerCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.offerContent {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.offerHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(27, 94, 32, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.offerIcon {
     color: #1B5E20;
-    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.offerTitle {
+    font-size: 1.5rem;
+    color: #064E3B;
+    margin: 0;
+    font-weight: 600;
+}
+
+.offerDescription {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.offerImageWrapper {
+    flex: 1;
+    min-height: 250px;
+    position: relative;
+}
+
+.offerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ctaButton {
+    background-color: #1B5E20;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+}
+
+.ctaButton:hover {
+    background-color: #2E7D32;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
+}
+
+.arrowIcon {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.ctaButton:hover .arrowIcon {
+    transform: translateX(3px);
+}
+
+.disclaimer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #888;
+    font-size: 0.9rem;
     font-style: italic;
 }
 
-.special p {
-    margin: 1rem 0;
-    font-weight: bold;
-}
+@media (max-width: 992px) {
+    .specialOffers {
+        padding: 4rem 1.5rem;
+    }
 
-.logo20, .logo21 {
-    width: 580px; /* Set a consistent width for the images */
-    height: 590px; /* Set a consistent height for the images */
-    /*object-fit: cover; !* Ensure images fit properly within the specified size *!*/
-    margin: 1rem; /* Add some space around the images */
-}
+    .sectionTitle {
+        font-size: 2.2rem;
+    }
 
-/* Make images sit next to each other */
-.offers img {
-    display: inline-block; /* Ensure the images stay on the same line */
-}
+    .offerCard {
+        flex-direction: column;
+    }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-    .logo20, .logo21 {
-        width: 200px;
+    .offerImageWrapper {
+        order: -1;
         height: 200px;
     }
 }
 
+@media (max-width: 768px) {
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .offersContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .offerTitle {
+        font-size: 1.3rem;
+    }
+}
+
 @media (max-width: 480px) {
-    .logo20, .logo21 {
-        width: 150px;
-        height: 150px;
+    .specialOffers {
+        padding: 3rem 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .offerContent {
+        padding: 1.5rem;
+    }
+
+    .iconWrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .offerIcon {
+        font-size: 1rem;
     }
 }
