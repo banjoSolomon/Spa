@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import heroImage from "../../../asset/10967 1.png";
-import { FaClock, FaCalendarAlt, FaPhoneAlt, FaArrowRight } from 'react-icons/fa';
+import { FaClock, FaCalendarAlt, FaPhoneAlt, FaArrowRight, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const Section1 = () => {
     const [time, setTime] = useState(new Date());
-    const [status, setStatus] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
+    const [showPhoneNumber, setShowPhoneNumber] = useState(false);
 
     // Business hours
     const openHour = 9;
     const closeHour = 22;
+    const phoneNumber = '08128015621';
+    const formattedPhoneNumber = '0812 801 5621';
 
     useEffect(() => {
         // Animation trigger
@@ -29,8 +32,8 @@ const Section1 = () => {
 
     const updateStatus = (currentTime) => {
         const hours = currentTime.getHours();
-        const isOpen = hours >= openHour && hours < closeHour;
-        setStatus(isOpen ? "Now Open" : "Now Closed");
+        const currentIsOpen = hours >= openHour && hours < closeHour;
+        setIsOpen(currentIsOpen);
     };
 
     const formatTime = (date) => {
@@ -42,8 +45,36 @@ const Section1 = () => {
         };
     };
 
+    const handleCallNow = () => {
+        setShowPhoneNumber(true);
+    };
+
+    const initiateCall = () => {
+        window.location.href = `tel:${phoneNumber}`;
+    };
+
     const { hours, minutes, seconds, ampm } = formatTime(time);
-    const statusColor = status.includes("Closed") ? styles.closed : styles.open;
+    const statusColor = isOpen ? styles.open : styles.closed;
+    const statusText = isOpen ? "Now Open" : "Now Closed";
+
+    // Get current opening status message
+    const getAvailabilityMessage = () => {
+        if (isOpen) {
+            return `We're currently open (until ${closeHour}:00)`;
+        } else {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(openHour, 0, 0, 0);
+
+            if (currentHour < openHour) {
+                return `We'll open today at ${openHour}:00`;
+            } else {
+                return `We'll open tomorrow at ${openHour}:00`;
+            }
+        }
+    };
 
     // Animation variants
     const containerVariants = {
@@ -89,6 +120,12 @@ const Section1 = () => {
         }
     };
 
+    const phoneModalVariants = {
+        hidden: { opacity: 0, y: 20, scale: 0.95 },
+        visible: { opacity: 1, y: 0, scale: 1 },
+        exit: { opacity: 0, y: -20, scale: 0.95 }
+    };
+
     return (
         <motion.section
             className={styles.heroSection}
@@ -110,26 +147,35 @@ const Section1 = () => {
                     </p>
 
                     <div className={styles.ctaContainer}>
-                        <button className={styles.primaryBtn}>
-                            <FaCalendarAlt className={styles.btnIcon} />
+                        <button
+                            className={styles.primaryBtn}
+                            onClick={() => {
+                                const section = document.getElementById('section6');
+                                section?.scrollIntoView({behavior: 'smooth'});
+                            }}
+                        >
+                            <FaCalendarAlt className={styles.btnIcon}/>
                             Book Appointment
-                            <FaArrowRight className={styles.btnArrow} />
+                            <FaArrowRight className={styles.btnArrow}/>
                         </button>
-                        <button className={styles.secondaryBtn}>
-                            <FaPhoneAlt className={styles.btnIcon} />
+                        <button
+                            className={styles.secondaryBtn}
+                            onClick={handleCallNow}
+                        >
+                            <FaPhoneAlt className={styles.btnIcon}/>
                             Call Now
-                            <FaArrowRight className={styles.btnArrow} />
+                            <FaArrowRight className={styles.btnArrow}/>
                         </button>
                     </div>
 
                     <div className={styles.businessInfo}>
                         <div className={styles.infoItem}>
                             <div className={styles.infoIconContainer}>
-                                <FaClock className={styles.infoIcon} />
+                                <FaClock className={styles.infoIcon}/>
                             </div>
                             <div>
                                 <p className={styles.infoLabel}>Working Hours</p>
-                                <p className={styles.infoText}>Mon-Sun: 9am - 10pm</p>
+                                <p className={styles.infoText}>Mon-Sun: {openHour}:00 - {closeHour}:00</p>
                             </div>
                         </div>
                     </div>
@@ -144,7 +190,7 @@ const Section1 = () => {
                         src={heroImage}
                         alt="Beauty spa treatment"
                         className={styles.heroImage}
-                        loading="eager" // Changed to eager for hero image
+                        loading="eager"
                     />
 
                     <div className={styles.timeStatusContainer}>
@@ -166,11 +212,54 @@ const Section1 = () => {
                             <span className={styles.ampm}>{ampm}</span>
                         </div>
                         <div className={`${styles.statusBadge} ${statusColor}`}>
-                            {status}
+                            {statusText}
                             <span className={styles.statusPulse}></span>
                         </div>
                     </div>
                 </motion.div>
+
+                {showPhoneNumber && (
+                    <motion.div
+                        className={styles.phoneModalOverlay}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={containerVariants}
+                        onClick={() => setShowPhoneNumber(false)}
+                    >
+                        <motion.div
+                            className={styles.phoneModal}
+                            variants={phoneModalVariants}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button
+                                className={styles.closeButton}
+                                onClick={() => setShowPhoneNumber(false)}
+                            >
+                                <FaTimes />
+                            </button>
+                            <div className={styles.phoneIcon}>
+                                <FaPhoneAlt />
+                            </div>
+                            <h3 className={styles.phoneTitle}>Call Us Now</h3>
+                            <p className={styles.phoneNumber}>{formattedPhoneNumber}</p>
+                            <button
+                                className={styles.callButton}
+                                onClick={initiateCall}
+                                disabled={!isOpen}
+                            >
+                                <FaPhoneAlt className={styles.callIcon} />
+                                {isOpen ? 'Tap to Call' : 'Currently Closed'}
+                            </button>
+                            <p className={styles.phoneNote}>
+                                {getAvailabilityMessage()}
+                            </p>
+                            <p className={styles.businessHours}>
+                                Business Hours: {openHour}:00 - {closeHour}:00
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                )}
             </div>
         </motion.section>
     );

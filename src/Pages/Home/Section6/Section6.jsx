@@ -28,7 +28,21 @@ const Section6 = () => {
         "Full Spa Package",
         "Aromatherapy",
         "Hot Stone Massage",
-        "Couples Package"
+        "Couples Package",
+        "Bikini Wax",
+        "Body Steaming",
+        "Vagacials",
+        "Moroccan Bath Scrub",
+        "Derma Planning Facials",
+        "Gentleman Facials",
+        "Rejuvenating Facials",
+        "Hot Oil Massage",
+        "Pregnancy Massage",
+        "Four Hands Massage",
+        "Buttocks",
+        "Leg Wax",
+        "Chin",
+        "Full Body Waxing"
     ];
 
     const availableTimes = [
