@@ -1,4 +1,4 @@
-/* Enhanced CSS Module */
+/* Simplified CSS Module without scroll animations */
 .aboutSection {
     position: relative;
     padding: 6rem 0;
@@ -20,7 +20,6 @@
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    transform-style: preserve-3d;
 }
 
 .aboutImage {

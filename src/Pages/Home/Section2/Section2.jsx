@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FaLeaf, FaSpa, FaHeart, FaQuoteLeft, FaArrowRight } from 'react-icons/fa';
-import { motion, useAnimation, useInView } from 'framer-motion';
 import styles from './index.module.css';
 import aboutImage from "../../../asset/deb.png";
 
@@ -36,25 +35,11 @@ const Section2 = () => {
         "Rest when you're weary. Refresh and renew yourself, your body, your mind, your spirit."
     ];
 
-    // Animation controls
-    const controls = useAnimation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: false, amount: 0.3 });
-
     // Quotes animation
     const quotesContainerRef = useRef(null);
     const animationRef = useRef(null);
-    const [currentQuotes] = useState([...spaQuotes, ...spaQuotes]);
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const [hoveredFeature, setHoveredFeature] = useState(null);
-
-    useEffect(() => {
-        if (isInView) {
-            controls.start("visible");
-        } else {
-            controls.start("hidden");
-        }
-    }, [isInView, controls]);
+    const [currentQuotes] = React.useState([...spaQuotes, ...spaQuotes]);
+    const [scrollPosition, setScrollPosition] = React.useState(0);
 
     useEffect(() => {
         const scrollQuotes = () => {
@@ -76,56 +61,10 @@ const Section2 = () => {
         };
     }, []);
 
-    // Animation variants
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-                delayChildren: 0.3
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut"
-            }
-        }
-    };
-
-    const featureCardVariants = {
-        rest: { scale: 1, y: 0 },
-        hover: {
-            scale: 1.03,
-            y: -5,
-            transition: {
-                duration: 0.3,
-                ease: "easeOut"
-            }
-        }
-    };
-
     return (
-        <motion.section
-            className={styles.aboutSection}
-            id="about"
-            ref={ref}
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
-        >
+        <section className={styles.aboutSection} id="about">
             <div className={styles.container}>
-                <motion.div
-                    className={styles.imageWrapper}
-                    variants={itemVariants}
-                >
+                <div className={styles.imageWrapper}>
                     <img
                         src={aboutImage}
                         alt="Bee Heaven Spa interior"
@@ -134,71 +73,49 @@ const Section2 = () => {
                     />
                     <div className={styles.imageOverlay}></div>
                     <div className={styles.imageDecoration}></div>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    className={styles.contentWrapper}
-                    variants={containerVariants}
-                >
-                    <motion.div
-                        className={styles.sectionHeader}
-                        variants={itemVariants}
-                    >
+                <div className={styles.contentWrapper}>
+                    <div className={styles.sectionHeader}>
                         <span className={styles.sectionSubtitle}>Welcome To</span>
                         <h2 className={styles.sectionTitle}>Bee Heaven Spa</h2>
                         <div className={styles.divider}></div>
-                    </motion.div>
+                    </div>
 
-                    <motion.p
-                        className={styles.aboutText}
-                        variants={itemVariants}
-                    >
+                    <p className={styles.aboutText}>
                         At Bee Heaven Spa, we believe in the art of relaxation and rejuvenation.
                         Step into a world where tranquility meets luxury, and allow yourself to
                         unwind, recharge, and rediscover your inner peace. Your well-being is
                         our priority and every treatment is designed to nourish your body,
                         mind, and spirit.
-                    </motion.p>
+                    </p>
 
                     <div className={styles.featuresGrid}>
                         {features.map((feature, index) => (
-                            <motion.div
+                            <div
                                 key={index}
                                 className={styles.featureCard}
-                                variants={itemVariants}
-                                initial="rest"
-                                whileHover="hover"
-                                animate={hoveredFeature === index ? "hover" : "rest"}
-                                onMouseEnter={() => setHoveredFeature(index)}
-                                onMouseLeave={() => setHoveredFeature(null)}
-                                variants={featureCardVariants}
                             >
                                 <div className={styles.featureIconWrapper}>
                                     {feature.icon}
                                 </div>
                                 <h3 className={styles.featureTitle}>{feature.title}</h3>
                                 <p className={styles.featureText}>{feature.description}</p>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 
-                    <motion.button
+                    <button
                         className={styles.ctaButton}
                         onClick={() => {
                             const section = document.getElementById('section6');
                             section?.scrollIntoView({behavior: 'smooth'});
                         }}
-                        variants={itemVariants}
-                        whileHover={{
-                            scale: 1.05,
-                            boxShadow: "0 8px 16px rgba(27, 94, 32, 0.2)"
-                        }}
-                        whileTap={{ scale: 0.98 }}
                     >
                         Discover Our Treatments
                         <FaArrowRight className={styles.ctaIcon} />
-                    </motion.button>
-                </motion.div>
+                    </button>
+                </div>
             </div>
 
             {/* Enhanced Quotes Section */}
@@ -221,7 +138,7 @@ const Section2 = () => {
                 <div className={styles.quotesOverlayLeft}></div>
                 <div className={styles.quotesOverlayRight}></div>
             </div>
-        </motion.section>
+        </section>
     );
 };
 
