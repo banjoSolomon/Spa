@@ -557,7 +557,7 @@ const Section3 = () => {
                                                         <h4>Location</h4>
                                                         <div className={styles.locationDetail}>
                                                             <FaMapMarkerAlt />
-                                                            <span>123 Spa Street, Beauty City, BC 12345</span>
+                                                            <span>7 Adebare Street, Ogudu Lagos</span>
                                                         </div>
                                                     </div>
                                                 </div>
