@@ -17,7 +17,10 @@ import arinolaImg2 from "../../../asset/Arinola2.jpg";
 import joyImg from "../../../asset/Joy.jpg";
 import joyImg2 from "../../../asset/Joy2.jpg";
 import joyImg3 from "../../../asset/Joy3.jpg";
-
+import MinaImg from  "../../../asset/Mina.jpg"
+import MinaImg2 from  "../../../asset/Mina2.jpg"
+import MinaImg4 from  "../../../asset/Mina4.jpg"
+import MinaImg6 from  "../../../asset/Mina6.jpg"
 // Animation variants
 const cardVariants = {
     offscreen: { y: 50, opacity: 0 },
@@ -102,6 +105,22 @@ const therapists = [
         focusArea: 'Full-body relaxation',
         availability: ['Tue-Thu: 10am-7pm', 'Sat: 9am-4pm'],
         languages: ['English', 'French']
+    },
+    {
+        id: 3,
+        name: 'Mina',
+        title: 'Massage Therapist',
+        images: [MinaImg, MinaImg2, MinaImg4, MinaImg6],
+        bio: 'Mina brings healing hands and a holistic approach to massage therapy. Trained in multiple modalities including Swedish, deep tissue, and hot stone massage. She believes in the power of touch to heal both body and mind.',
+        specialties: ['Massage', 'Aromatherapy', 'Reflexology', 'Hot Stone Therapy', 'Facials'],
+        rating: 4.8,
+        reviews: 95,
+        experience: '4 years',
+        quote: 'Relax your body, renew your mind, refresh your soul.',
+        certifications: ['Licensed Massage Therapist', 'Reiki Master'],
+        focusArea: 'Full-body relaxation',
+        availability: ['Tue-Thu: 10am-7pm', 'Sat: 9am-4pm'],
+        languages: ['English', 'French']
     }
 ];
 
@@ -127,8 +146,16 @@ const testimonials = [
         name: 'Emily Davis',
         rating: 4,
         date: '3 weeks ago',
-        content: 'The waxing service was painless and my skin feels amazing. Will definitely be coming back!',
+        content: 'The waxing service was painless and my skin feels amazing. Will definitely be coming back!.',
         therapistId: 1
+    },
+    {
+        id: 3,
+        name: 'Emily Davis',
+        rating: 4,
+        date: '3 weeks ago',
+        content: 'Mina has magic hands! My chronic back pain has significantly improved after just a few sessions.',
+        therapistId: 3
     }
 ];
 
