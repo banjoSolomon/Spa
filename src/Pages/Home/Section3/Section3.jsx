@@ -6,9 +6,9 @@ import {
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './index.module.css';
-import waxingImg from "../../../asset/wax.png";
-import facialImg from "../../../asset/face.png";
-import massageImg from "../../../asset/massage.png";
+import waxingImg from "../../../asset/waxme.png";
+import facialImg from "../../../asset/upd.png";
+import massageImg from "../../../asset/massageMe.png";
 
 // Import therapist images
 import arinolaImg from "../../../asset/Arinola.jpg";
