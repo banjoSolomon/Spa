@@ -1,0 +1,206 @@
+.chatButton {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border: none;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    color: white;
+    font-size: 24px;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.chatWindow {
+    position: fixed;
+    bottom: 170px;
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatHeader {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.whatsappIcon {
+    font-size: 32px;
+}
+
+.chatHeader h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chatHeader p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.closeButton:hover {
+    opacity: 0.8;
+}
+
+.chatBody {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #f5f5f5;
+}
+
+.welcomeMessage {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.welcomeMessage p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.quickReplies {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quickRepliesLabel {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.quickReply {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 10px 14px;
+    border-radius: 20px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.quickReply:hover {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+    transform: translateX(4px);
+}
+
+.chatFooter {
+    padding: 12px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 8px;
+}
+
+.messageInput {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+}
+
+.messageInput:focus {
+    border-color: #25D366;
+}
+
+.sendButton {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.sendButton:hover:not(:disabled) {
+    background: #128C7E;
+}
+
+.sendButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .chatWindow {
+        width: calc(100vw - 40px);
+        right: 20px;
+        bottom: 80px;
+    }
+
+    .chatButton {
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}

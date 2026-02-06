@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     FaArrowRight, FaSpa, FaHands, FaSmile, FaTimes, FaStar,
     FaChevronLeft, FaChevronRight, FaRegCalendarAlt, FaPhoneAlt,
-    FaMapMarkerAlt, FaClock, FaCertificate, FaHeart
+    FaMapMarkerAlt, FaClock, FaCertificate, FaHeart, FaCheckCircle,
+    FaTrophy, FaAward, FaMedal, FaPlay, FaThumbsUp, FaUsers
 } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './index.module.css';
@@ -88,7 +89,27 @@ const therapists = [
         certifications: ['Licensed Massage Therapist', 'Advanced Skincare Specialist'],
         focusArea: 'Face-focused treatments',
         availability: ['Mon-Wed: 9am-5pm', 'Fri: 10am-6pm'],
-        languages: ['English', 'Yoruba']
+        languages: ['English', 'Yoruba'],
+        verified: true,
+        topRated: true,
+        stats: {
+            clients: '500+',
+            satisfaction: '98%',
+            years: '5+'
+        },
+        skills: [
+            { name: 'Facial Treatments', level: 95 },
+            { name: 'Waxing', level: 92 },
+            { name: 'Chemical Peels', level: 88 },
+            { name: 'Massage Therapy', level: 85 }
+        ],
+        achievements: [
+            { icon: <FaTrophy />, title: 'Top Performer 2023', description: 'Highest client satisfaction' },
+            { icon: <FaAward />, title: 'Expert Certification', description: 'Advanced skincare specialist' },
+            { icon: <FaMedal />, title: '500+ Happy Clients', description: 'Trusted by hundreds' },
+            { icon: <FaHeart />, title: 'Client Favorite', description: 'Most requested therapist' }
+        ],
+        preferences: ['Relaxing Music', 'Aromatherapy', 'Organic Products', 'Personalized Care']
     },
     {
         id: 2,
@@ -104,7 +125,27 @@ const therapists = [
         certifications: ['Licensed Massage Therapist', 'Reiki Master'],
         focusArea: 'Full-body relaxation',
         availability: ['Tue-Thu: 10am-7pm', 'Sat: 9am-4pm'],
-        languages: ['English', 'French']
+        languages: ['English', 'French'],
+        verified: true,
+        topRated: false,
+        stats: {
+            clients: '400+',
+            satisfaction: '97%',
+            years: '4'
+        },
+        skills: [
+            { name: 'Deep Tissue Massage', level: 93 },
+            { name: 'Swedish Massage', level: 90 },
+            { name: 'Hot Stone Therapy', level: 87 },
+            { name: 'Aromatherapy', level: 89 }
+        ],
+        achievements: [
+            { icon: <FaTrophy />, title: 'Reiki Master', description: 'Advanced healing techniques' },
+            { icon: <FaAward />, title: 'Certified Therapist', description: 'Multiple modalities' },
+            { icon: <FaUsers />, title: '400+ Clients', description: 'Trusted professional' },
+            { icon: <FaThumbsUp />, title: 'High Ratings', description: '4.8/5 average' }
+        ],
+        preferences: ['Calming Environment', 'Essential Oils', 'Soft Lighting', 'Healing Energy']
     },
     {
         id: 3,
@@ -120,7 +161,27 @@ const therapists = [
         certifications: ['Licensed Massage Therapist', 'Reiki Master'],
         focusArea: 'Full-body relaxation',
         availability: ['Tue-Thu: 10am-7pm', 'Sat: 9am-4pm'],
-        languages: ['English', 'French']
+        languages: ['English', 'French'],
+        verified: true,
+        topRated: true,
+        stats: {
+            clients: '450+',
+            satisfaction: '98%',
+            years: '4'
+        },
+        skills: [
+            { name: 'Swedish Massage', level: 94 },
+            { name: 'Aromatherapy', level: 91 },
+            { name: 'Reflexology', level: 88 },
+            { name: 'Hot Stone Therapy', level: 90 }
+        ],
+        achievements: [
+            { icon: <FaTrophy />, title: 'Excellence Award', description: 'Outstanding service 2023' },
+            { icon: <FaAward />, title: 'Master Therapist', description: 'Advanced certifications' },
+            { icon: <FaMedal />, title: '450+ Happy Clients', description: 'Highly recommended' },
+            { icon: <FaHeart />, title: 'Client Choice', description: 'Top rated therapist' }
+        ],
+        preferences: ['Tranquil Atmosphere', 'Natural Products', 'Personalized Sessions', 'Holistic Approach']
     }
 ];
 
@@ -324,6 +385,16 @@ const Section3 = () => {
                         variants={cardVariants}
                     >
                         <div className={styles.therapistImageWrapper}>
+                            {therapist.verified && (
+                                <div className={styles.verifiedBadge}>
+                                    <FaCheckCircle /> Verified
+                                </div>
+                            )}
+                            {therapist.topRated && (
+                                <div className={styles.topRatedBadge}>
+                                    <FaStar /> Top Rated
+                                </div>
+                            )}
                             <div className={styles.faceFocusContainer}>
                                 <img
                                     src={therapist.images[0]}
@@ -347,6 +418,22 @@ const Section3 = () => {
                                         {therapist.specialties.length > 2 && (
                                             <span>+{therapist.specialties.length - 2} more</span>
                                         )}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles.therapistStats}>
+                                <div className={styles.statsGrid}>
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statNumber}>{therapist.stats.clients}</span>
+                                        <span className={styles.statLabel}>Clients</span>
+                                    </div>
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statNumber}>{therapist.stats.satisfaction}</span>
+                                        <span className={styles.statLabel}>Satisfaction</span>
+                                    </div>
+                                    <div className={styles.statItem}>
+                                        <span className={styles.statNumber}>{therapist.stats.years}</span>
+                                        <span className={styles.statLabel}>Years</span>
                                     </div>
                                 </div>
                             </div>
@@ -463,22 +550,28 @@ const Section3 = () => {
                                                 About
                                             </button>
                                             <button
+                                                className={`${styles.tabButton} ${activeTab === 'skills' ? styles.activeTab : ''}`}
+                                                onClick={() => handleTabChange('skills')}
+                                            >
+                                                Skills
+                                            </button>
+                                            <button
                                                 className={`${styles.tabButton} ${activeTab === 'services' ? styles.activeTab : ''}`}
                                                 onClick={() => handleTabChange('services')}
                                             >
                                                 Services
                                             </button>
                                             <button
+                                                className={`${styles.tabButton} ${activeTab === 'achievements' ? styles.activeTab : ''}`}
+                                                onClick={() => handleTabChange('achievements')}
+                                            >
+                                                Achievements
+                                            </button>
+                                            <button
                                                 className={`${styles.tabButton} ${activeTab === 'reviews' ? styles.activeTab : ''}`}
                                                 onClick={() => handleTabChange('reviews')}
                                             >
                                                 Reviews
-                                            </button>
-                                            <button
-                                                className={`${styles.tabButton} ${activeTab === 'availability' ? styles.activeTab : ''}`}
-                                                onClick={() => handleTabChange('availability')}
-                                            >
-                                                Availability
                                             </button>
                                         </div>
 
@@ -496,6 +589,16 @@ const Section3 = () => {
                                                         <p className={styles.bio}>{selectedTherapist.bio}</p>
                                                     </div>
 
+                                                    <div className={styles.videoSection}>
+                                                        <h3>Introduction Video</h3>
+                                                        <div className={styles.videoPlaceholder}>
+                                                            <div className={styles.playIcon}>
+                                                                <FaPlay />
+                                                            </div>
+                                                            <span className={styles.videoText}>Watch {selectedTherapist.name}'s Introduction</span>
+                                                        </div>
+                                                    </div>
+
                                                     <div className={styles.infoSection}>
                                                         <h3>Languages</h3>
                                                         <div className={styles.specialties}>
@@ -505,6 +608,66 @@ const Section3 = () => {
                                                                 </span>
                                                             ))}
                                                         </div>
+                                                    </div>
+
+                                                    <div className={styles.bookingPreferences}>
+                                                        <h4>Session Preferences</h4>
+                                                        <div className={styles.preferencesList}>
+                                                            {selectedTherapist.preferences.map((pref, index) => (
+                                                                <span key={index} className={styles.preferenceTag}>
+                                                                    <FaCheckCircle /> {pref}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+
+                                            {activeTab === 'skills' && (
+                                                <>
+                                                    <div className={styles.skillsSection}>
+                                                        <h3>Professional Skills</h3>
+                                                        {selectedTherapist.skills.map((skill, index) => (
+                                                            <div key={index} className={styles.skillItem}>
+                                                                <div className={styles.skillHeader}>
+                                                                    <span className={styles.skillName}>{skill.name}</span>
+                                                                    <span className={styles.skillPercentage}>{skill.level}%</span>
+                                                                </div>
+                                                                <div className={styles.skillBar}>
+                                                                    <motion.div
+                                                                        className={styles.skillProgress}
+                                                                        initial={{ width: 0 }}
+                                                                        animate={{ width: `${skill.level}%` }}
+                                                                        transition={{ duration: 1, delay: index * 0.1 }}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+
+                                                    <div className={styles.clientFeedback}>
+                                                        <h3>Client Feedback</h3>
+                                                        <div className={styles.feedbackStats}>
+                                                            <div className={styles.feedbackItem}>
+                                                                <span className={styles.feedbackValue}>{selectedTherapist.stats.satisfaction}</span>
+                                                                <span className={styles.feedbackLabel}>Satisfaction Rate</span>
+                                                            </div>
+                                                            <div className={styles.feedbackItem}>
+                                                                <span className={styles.feedbackValue}>{selectedTherapist.stats.clients}</span>
+                                                                <span className={styles.feedbackLabel}>Happy Clients</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className={styles.socialProof}>
+                                                        <h4><FaThumbsUp /> Why Clients Love {selectedTherapist.name}</h4>
+                                                        <ul className={styles.socialProofList}>
+                                                            <li>Professional and friendly approach</li>
+                                                            <li>Attention to detail and personalized care</li>
+                                                            <li>Creates a relaxing and comfortable environment</li>
+                                                            <li>Excellent communication and listening skills</li>
+                                                            <li>Consistently delivers outstanding results</li>
+                                                        </ul>
                                                     </div>
                                                 </>
                                             )}
@@ -531,6 +694,55 @@ const Section3 = () => {
                                                                 </li>
                                                             ))}
                                                         </ul>
+                                                    </div>
+
+                                                    <div className={styles.infoSection}>
+                                                        <h3>Availability</h3>
+                                                        <div className={styles.availabilitySlots}>
+                                                            {selectedTherapist.availability.map((slot, index) => (
+                                                                <div key={index} className={styles.timeSlot}>
+                                                                    <FaClock /> {slot}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )}
+
+                                            {activeTab === 'achievements' && (
+                                                <>
+                                                    <div className={styles.achievementsSection}>
+                                                        <h3>Awards & Recognition</h3>
+                                                        <div className={styles.achievementsGrid}>
+                                                            {selectedTherapist.achievements.map((achievement, index) => (
+                                                                <motion.div
+                                                                    key={index}
+                                                                    className={styles.achievementCard}
+                                                                    initial={{ opacity: 0, y: 20 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ delay: index * 0.1 }}
+                                                                >
+                                                                    <div className={styles.achievementIcon}>
+                                                                        {achievement.icon}
+                                                                    </div>
+                                                                    <div className={styles.achievementTitle}>
+                                                                        {achievement.title}
+                                                                    </div>
+                                                                    <div className={styles.achievementDescription}>
+                                                                        {achievement.description}
+                                                                    </div>
+                                                                </motion.div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+
+                                                    <div className={styles.infoSection}>
+                                                        <h3>Professional Journey</h3>
+                                                        <p className={styles.bio}>
+                                                            {selectedTherapist.name} has been dedicated to providing exceptional spa services for {selectedTherapist.stats.years} years. 
+                                                            With a {selectedTherapist.stats.satisfaction} satisfaction rate and over {selectedTherapist.stats.clients} happy clients, 
+                                                            {selectedTherapist.name} continues to set the standard for excellence in the industry.
+                                                        </p>
                                                     </div>
                                                 </>
                                             )}

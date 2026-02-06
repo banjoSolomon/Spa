@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styles from './index.module.css';
 import heroImage from "../../../asset/10967 1.png";
 import { FaClock, FaCalendarAlt, FaPhoneAlt, FaArrowRight, FaTimes } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const Section1 = () => {
     const [time, setTime] = useState(new Date());
     const [isOpen, setIsOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [showPhoneNumber, setShowPhoneNumber] = useState(false);
+    const { scrollY } = useScroll();
+    const imageY = useTransform(scrollY, [0, 500], [0, 150]);
+    const imageRotate = useTransform(scrollY, [0, 500], [-5, 0]);
 
     // Business hours
     const openHour = 9;
@@ -185,12 +188,14 @@ const Section1 = () => {
                     className={styles.imageContent}
                     variants={imageVariants}
                     whileHover="hover"
+                    style={{ y: imageY }}
                 >
-                    <img
+                    <motion.img
                         src={heroImage}
                         alt="Beauty spa treatment"
                         className={styles.heroImage}
                         loading="eager"
+                        style={{ rotateY: imageRotate }}
                     />
 
                     <div className={styles.timeStatusContainer}>

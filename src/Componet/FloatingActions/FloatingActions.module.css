@@ -1,0 +1,81 @@
+.floatingActions {
+    position: fixed;
+    bottom: 180px;
+    right: 30px;
+    z-index: 997;
+}
+
+.mainButton {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d4a574 0%, #b8935f 100%);
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(212, 165, 116, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.actionButton {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip {
+    position: absolute;
+    right: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.actionButton:hover .tooltip {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .floatingActions {
+        bottom: 150px;
+        right: 20px;
+    }
+
+    .mainButton {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .actionButton {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .tooltip {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}

@@ -6,6 +6,9 @@ import Section3 from "./Section3/Section3";
 import Section4 from "./Section4/Section4";
 import Section5 from "./Section5/Section5";
 import Section6 from "./Section6/Section6";
+import TestimonialsCarousel from "../../Componet/TestimonialsCarousel/TestimonialsCarousel";
+import Gallery from "./Gallery/Gallery";
+import FAQ from "./FAQ/FAQ";
 
 
 const Home = () => {
@@ -14,7 +17,10 @@ const Home = () => {
             <Section1/>
             <Section2/>
             <Section3/>
+            <Gallery/>
             <Section4/>
+            <TestimonialsCarousel/>
+            <FAQ/>
             <Section5/>
             <div id="section6">
                 <Section6/>
